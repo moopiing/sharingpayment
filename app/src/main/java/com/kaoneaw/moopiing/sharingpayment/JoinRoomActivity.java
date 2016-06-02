@@ -8,20 +8,20 @@ import android.widget.ImageButton;
 
 public class JoinRoomActivity extends Activity {
 
-    private ImageButton joinInJoinButton;
+    private ImageButton joinButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_joinroom);
 
-        joinInJoinButton = (ImageButton) findViewById(R.id.btn_join_in_join);
+        joinButton = (ImageButton) findViewById(R.id.btn_join);
 
         initComponents();
     }
 
     private void initComponents(){
-        joinInJoinButton.setOnClickListener(new View.OnClickListener() {
+        joinButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(JoinRoomActivity.this,ChooseActivity.class);

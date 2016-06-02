@@ -16,7 +16,7 @@ public class SignUpActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
 
-        signUpButton = (ImageButton) findViewById(R.id.btn_signup_in_signup);
+        signUpButton = (ImageButton) findViewById(R.id.btn_signup);
 
         initComponents();
     }

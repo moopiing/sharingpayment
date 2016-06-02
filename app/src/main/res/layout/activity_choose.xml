@@ -1,39 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
+    android:layout_width="fill_parent"
     android:layout_height="match_parent"
-    tools:context=".ChooseActivity">
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.kaoneaw.moopiing.sharingpayment.ChooseActivity"
+    android:background="#87d9ff">
 
     <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/btn_food"
-        android:src="@drawable/btn_food" />
+        android:src="@drawable/btn_food"
+        android:background="#87d9ff"
+        android:layout_above="@+id/btn_go"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="false"
+        android:layout_marginBottom="145dp"
+        android:layout_marginLeft="30dp" />
 
     <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/btn_drink"
-        android:src="@drawable/btn_drink" />
+        android:src="@drawable/btn_drink"
+        android:background="#87d9ff"
+        android:layout_alignTop="@+id/btn_food"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="30dp" />
 
     <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/btn_go"
         android:layout_gravity="center_vertical"
-        android:src="@drawable/btn_go" />
+        android:src="@drawable/btn_go"
+        android:background="#87d9ff"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="55dp" />
 
     <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/btn_dessert"
-        android:src="@drawable/btn_dessert" />
+        android:src="@drawable/btn_dessert"
+        android:background="#87d9ff"
+        android:layout_above="@+id/btn_go"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="false"
+        android:layout_marginLeft="30dp"
+        android:layout_marginBottom="20dp" />
 
     <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/btn_tip"
-        android:src="@drawable/btn_tip" />
+        android:src="@drawable/btn_tip"
+        android:background="#87d9ff"
+        android:layout_above="@+id/btn_go"
+        android:layout_alignRight="@+id/btn_drink"
+        android:layout_alignEnd="@+id/btn_drink"
+        android:layout_marginBottom="20dp" />
 
-</LinearLayout>
+</RelativeLayout>

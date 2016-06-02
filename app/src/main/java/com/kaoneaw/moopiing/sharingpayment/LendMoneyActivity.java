@@ -8,20 +8,20 @@ import android.widget.ImageButton;
 
 public class LendMoneyActivity extends Activity {
 
-    private ImageButton lendInLendMoneyButton;
+    private ImageButton lendButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lendmoney);
 
-        lendInLendMoneyButton = (ImageButton) findViewById(R.id.btn_lend_in_lendmoney);
+        lendButton = (ImageButton) findViewById(R.id.btn_lend);
 
         initComponents();
     }
 
     private void initComponents(){
-        lendInLendMoneyButton.setOnClickListener(new View.OnClickListener() {
+        lendButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(LendMoneyActivity.this,MainActivity.class);

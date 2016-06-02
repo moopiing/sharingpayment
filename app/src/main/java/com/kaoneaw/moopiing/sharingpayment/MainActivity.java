@@ -20,12 +20,12 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        newRoomButtom = (ImageButton) findViewById(R.id.btn_new_room);
-        joinRoomButtom = (ImageButton) findViewById(R.id.btn_join_room);
-        addMoneyButtom = (ImageButton) findViewById(R.id.btn_add_money);
-        lendMoneyButtom = (ImageButton) findViewById(R.id.btn_lend_money);
-        viewHistoryButtom = (ImageButton) findViewById(R.id.btn_history);
-        logOutButton = (ImageButton) findViewById(R.id.btn_logout);
+        newRoomButtom = (ImageButton) findViewById(R.id.btn_menu_new_room);
+        joinRoomButtom = (ImageButton) findViewById(R.id.btn_menu_join_room);
+        addMoneyButtom = (ImageButton) findViewById(R.id.btn_menu_add_money);
+        lendMoneyButtom = (ImageButton) findViewById(R.id.btn_menu_lend_money);
+        viewHistoryButtom = (ImageButton) findViewById(R.id.btn_menu_history);
+        logOutButton = (ImageButton) findViewById(R.id.btn_menu_logout);
 
         initComponents();
     }
