@@ -20,4 +20,76 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="55dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Room"
+        android:id="@+id/tv_room"
+        android:textSize="40dp"
+        android:textColor="#006fd7"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="30dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="0000"
+        android:id="@+id/tv_string_room"
+        android:background="@drawable/img_bg_number"
+        android:gravity="center"
+        android:textSize="40dp"
+        android:layout_marginTop="30dp"
+        android:layout_alignParentRight="false"
+        android:layout_marginLeft="200dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Total"
+        android:id="@+id/tv_total"
+        android:textSize="30dp"
+        android:textColor="#006fd7"
+        android:layout_marginTop="180dp"
+        android:layout_marginLeft="50dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="You Pay"
+        android:id="@+id/tv_you_pay"
+        android:textSize="30dp"
+        android:textColor="#006fd7"
+        android:layout_marginTop="250dp"
+        android:layout_marginLeft="35dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="0000"
+        android:id="@+id/tv_string_total"
+        android:background="@drawable/img_bg_number"
+        android:gravity="center"
+        android:textSize="30dp"
+        android:layout_marginTop="180dp"
+        android:layout_marginLeft="190dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="0000"
+        android:id="@+id/tv_string_upay"
+        android:background="@drawable/img_bg_number"
+        android:gravity="center"
+        android:textSize="30dp"
+        android:layout_marginLeft="190dp"
+        android:layout_marginTop="250dp" />
+
 </RelativeLayout>

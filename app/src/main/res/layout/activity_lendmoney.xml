@@ -20,4 +20,75 @@
         android:layout_marginBottom="55dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="My Balance"
+        android:id="@+id/tv_my_balance"
+        android:layout_marginTop="75dp"
+        android:textSize="30dp"
+        android:textColor="#006fd7"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="false"
+        android:layout_marginLeft="35dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:id="@+id/tv_string_balance"
+        android:text="0000"
+        android:background="@drawable/img_bg_number"
+        android:gravity="center"
+        android:textSize="30dp"
+        android:layout_alignTop="@+id/tv_my_balance"
+        android:layout_toRightOf="@+id/tv_my_balance"
+        android:layout_toEndOf="@+id/tv_my_balance"
+        android:layout_marginLeft="35dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Enter Username"
+        android:id="@+id/tv_enter_username"
+        android:layout_marginTop="53dp"
+        android:textColor="#006fd7"
+        android:layout_below="@+id/tv_my_balance"
+        android:layout_alignLeft="@+id/tv_my_balance"
+        android:layout_alignStart="@+id/tv_my_balance" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/et_input_username"
+        android:textColor="#0084ff"
+        android:layout_below="@+id/tv_enter_username"
+        android:layout_alignLeft="@+id/tv_enter_username"
+        android:layout_alignStart="@+id/tv_enter_username"
+        android:layout_marginRight="35dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Enter Amount"
+        android:id="@+id/tv_enter_amount"
+        android:textColor="#006fd7"
+        android:layout_below="@+id/et_input_username"
+        android:layout_alignLeft="@+id/et_input_username"
+        android:layout_alignStart="@+id/et_input_username"
+        android:layout_marginTop="20dp" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/et_input_amount"
+        android:textColor="#0084ff"
+        android:layout_below="@+id/tv_enter_amount"
+        android:layout_alignLeft="@+id/tv_enter_amount"
+        android:layout_alignStart="@+id/tv_enter_amount"
+        android:layout_marginRight="35dp" />
 </RelativeLayout>

@@ -67,4 +67,28 @@
         android:layout_alignEnd="@+id/btn_drink"
         android:layout_marginBottom="20dp" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Room"
+        android:id="@+id/tv_room"
+        android:textSize="40dp"
+        android:textColor="#006fd7"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="30dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="0000"
+        android:id="@+id/tv_string_room"
+        android:background="@drawable/img_bg_number"
+        android:gravity="center"
+        android:textSize="40dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="200dp" />
+
 </RelativeLayout>

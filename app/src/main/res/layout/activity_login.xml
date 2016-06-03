@@ -50,4 +50,52 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="false" />
 
+    <EditText
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/et_input_username"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="false"
+        android:layout_below="@+id/tv_username"
+        android:drawableLeft="@drawable/img_user"
+        android:textColor="#0084ff" />
+
+    <EditText
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:ems="10"
+        android:id="@+id/et_input_password"
+        android:layout_centerVertical="true"
+        android:layout_alignParentEnd="false"
+        android:layout_below="@+id/tv_password"
+        android:drawableLeft="@drawable/img_lock"
+        android:textColor="#0084ff" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Username"
+        android:id="@+id/tv_username"
+        android:layout_below="@+id/img_login"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="false"
+        android:layout_marginTop="20dp"
+        android:textIsSelectable="false"
+        android:textColor="#006fd7"
+        android:password="false"
+        android:autoText="false" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Password"
+        android:id="@+id/tv_password"
+        android:layout_below="@+id/et_input_username"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="false"
+        android:textColor="#006fd7" />
+
 </RelativeLayout>

@@ -17,7 +17,7 @@ public class LoadingActivity extends Activity {
             public void run() {
                 try {
                     super.run();
-                    sleep(4000);  //Delay of 4 seconds
+                    sleep(1000);  //Delay of 4 seconds
                 } catch (Exception e) {
 
                 } finally {
