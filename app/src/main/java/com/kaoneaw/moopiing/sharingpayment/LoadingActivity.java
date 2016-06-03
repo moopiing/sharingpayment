@@ -17,13 +17,16 @@ public class LoadingActivity extends Activity {
             public void run() {
                 try {
                     super.run();
-                    sleep(1000);  //Delay of 4 seconds
+                    sleep(0000);  //Delay of 4 seconds
                 } catch (Exception e) {
 
                 } finally {
 
-                    Intent i = new Intent(LoadingActivity.this,
-                            LoginActivity.class);
+                    Intent i = new Intent(LoadingActivity.this, LoginActivity.class);
+
+                    //temp
+//                    Intent i = new Intent(LoadingActivity.this, MainActivity.class);
+
                     startActivity(i);
                     finish();
                 }

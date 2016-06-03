@@ -39,9 +39,9 @@ public class SignUpActivity extends Activity {
         signUpButton.setOnClickListener(new View.OnClickListener() {
                 public void onClick (View v) {
 
-                    String username = input_username.getText().toString();
-                    String password = input_password.getText().toString();
-                    String confirm = input_confirm.getText().toString();
+                    final String username = input_username.getText().toString();
+                    final String password = input_password.getText().toString();
+                    final String confirm = input_confirm.getText().toString();
 
                     if (!password.equals(confirm)) {
                         Toast noMatch = Toast.makeText(SignUpActivity.this, "Passwords don't match!", Toast.LENGTH_SHORT);
@@ -57,6 +57,7 @@ public class SignUpActivity extends Activity {
                         Account ac = new Account();
                         ac.setUsername(username);
                         ac.setPassword(password);
+                        ac.setBalance(100);
 
                         helper.insertContact(ac);
 

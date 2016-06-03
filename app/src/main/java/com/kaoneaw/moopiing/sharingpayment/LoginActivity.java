@@ -32,6 +32,7 @@ public class LoginActivity extends Activity {
         input_username = (EditText) findViewById(R.id.et_input_username);
         input_password = (EditText) findViewById(R.id.et_input_password);
 
+
         initComponents();
     }
 
@@ -40,15 +41,16 @@ public class LoginActivity extends Activity {
             @Override
             public void onClick(View v) {
 
-                String username = input_username.getText().toString();
-                String password = input_password.getText().toString();
+                final String username = input_username.getText().toString();
+                final String password = input_password.getText().toString();
 
-                String searchPass = helper.searchPass(username);
+                final String searchPass = helper.searchPass(username);
 
                 if(!username.equals("") && !password.equals("")) {
                     if (password.equals(searchPass)) {
                         Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                         intent.putExtra("Username", username);
+
                         startActivity(intent);
                     } else {
                         Toast nomatch = Toast.makeText(LoginActivity.this, "Username and Password don't match!", Toast.LENGTH_SHORT);
@@ -78,4 +80,5 @@ public class LoginActivity extends Activity {
             }
         });
     }
+
 }

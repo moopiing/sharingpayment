@@ -5,21 +5,27 @@ package com.kaoneaw.moopiing.sharingpayment;
         import android.os.Bundle;
         import android.view.View;
         import android.widget.ImageButton;
+        import android.widget.TextView;
 
 public class MainActivity extends Activity {
 
+    DatabaseHelper helper = new DatabaseHelper(this);
+
+    private TextView balance;
     private ImageButton newRoomButtom;
     private ImageButton joinRoomButtom;
     private ImageButton addMoneyButtom;
     private ImageButton lendMoneyButtom;
     private ImageButton viewHistoryButtom;
     private ImageButton logOutButton;
+    private String username;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        balance = (TextView) findViewById(R.id.tv_string_balance);
         newRoomButtom = (ImageButton) findViewById(R.id.btn_menu_new_room);
         joinRoomButtom = (ImageButton) findViewById(R.id.btn_menu_join_room);
         addMoneyButtom = (ImageButton) findViewById(R.id.btn_menu_add_money);
@@ -31,6 +37,9 @@ public class MainActivity extends Activity {
     }
 
     private void initComponents(){
+
+        username = super.getIntent().getExtras().getString("Username");
+        balance.setText(helper.searchPass1(username));
 
         newRoomButtom.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -50,6 +59,7 @@ public class MainActivity extends Activity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this,AddMoneyActivity.class);
+                intent.putExtra("Username", username);
                 startActivity(intent);
             }
         });

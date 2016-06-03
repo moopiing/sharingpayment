@@ -14,9 +14,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String COLUMN_ID = "id";
     private static final String COLUMN_USERNAME = "username";
     private static final String COLUMN_PASSWORD = "password";
+    private static final String COLUMN_BALANCE = "balance";
     SQLiteDatabase db;
-    private static final String TABLE_CREATE = "create table Account (id integer primary key not null , "
-            + "username text not null , password text not null);";
+    private static final String TABLE_CREATE = "create table Account (id integer primary key not null, "
+            + "username text not null, "
+            + "password text not null, "
+            + "balance integer not null"
+            + ");";
 
     public DatabaseHelper(Context context){
         super(context,DATABASE_NAME,null,DATABASE_VERSION);
@@ -40,14 +44,37 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(COLUMN_ID , count);
         values.put(COLUMN_USERNAME , ac.getUsername());
         values.put(COLUMN_PASSWORD , ac.getPassword());
+        values.put(COLUMN_BALANCE, ac.getBalance());
 
         db.insert(TABLE_NAME, null, values);
+//        db.delete(TABLE_NAME, null,null);
         db.close();
     }
 
     public String searchPass(String username) {
         db = this.getReadableDatabase();
         String query = "select username, password from " + TABLE_NAME;
+        Cursor cursor = db.rawQuery(query, null);
+        String a, b;
+        b = "not found";
+        if (cursor.moveToFirst()) {
+            do {
+                a = cursor.getString(0);
+
+                if (a.equals(username)) {
+                    b = cursor.getString(1);
+                    break;
+                }
+            }
+            while (cursor.moveToNext());
+        }
+        return b;
+    }
+
+    //temp
+    public String searchPass1(String username) {
+        db = this.getReadableDatabase();
+        String query = "select username, balance from " + TABLE_NAME;
         Cursor cursor = db.rawQuery(query, null);
         String a, b;
         b = "not found";
