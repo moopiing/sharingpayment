@@ -49,7 +49,7 @@ public class AddMoneyActivity extends Activity {
                 Account ac = new Account();
                 ac.setUsername(username);
                 ac.setPassword(helper.searchPass(username));
-                ac.setBalance(Integer.parseInt(temp) + Integer.parseInt(helper.searchPass1(username)));
+                ac.setBalance(Double.parseDouble(temp) + Double.parseDouble(helper.searchPass1(username)));
 
                 helper.updateBalance(ac);
 

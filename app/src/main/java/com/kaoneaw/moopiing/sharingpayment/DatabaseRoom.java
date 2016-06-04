@@ -19,9 +19,9 @@ public class DatabaseRoom extends SQLiteOpenHelper {
     SQLiteDatabase db;
     private static final String TABLE_CREATE = "create table Room (id integer primary key not null, "
             + "name text not null, "
-            + "food integer not null, "
-            + "drink integer not null, "
-            + "dessert integer not null"
+            + "food double not null, "
+            + "drink double not null, "
+            + "dessert double not null"
             + ");";
 
     public DatabaseRoom(Context context){
@@ -137,7 +137,29 @@ public class DatabaseRoom extends SQLiteOpenHelper {
         return b;
     }
 
-    public int updateCost(Room rm){
+    //using name to find name
+    public String searchName(String name) {
+        db = this.getReadableDatabase();
+        String query = "select name, name from " + TABLE_NAME;
+        Cursor cursor = db.rawQuery(query, null);
+        String a, b;
+        b = "not found";
+        if (cursor.moveToFirst()) {
+            do {
+                a = cursor.getString(0);
+
+                if (a.equals(name)) {
+                    b = cursor.getString(1);
+                    break;
+                }
+            }
+            while (cursor.moveToNext());
+        }
+        return b;
+    }
+
+
+    public double updateCost(Room rm){
         db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(COLUMN_NAME, rm.getName());

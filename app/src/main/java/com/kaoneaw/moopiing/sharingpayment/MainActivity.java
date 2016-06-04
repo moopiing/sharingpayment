@@ -7,7 +7,11 @@ package com.kaoneaw.moopiing.sharingpayment;
         import android.widget.ImageButton;
         import android.widget.TextView;
 
+        import java.text.DecimalFormat;
+
 public class MainActivity extends Activity {
+
+    private static DecimalFormat REAL_FORMATTER = new DecimalFormat("0.##");
 
     DatabaseHelper helper = new DatabaseHelper(this);
 

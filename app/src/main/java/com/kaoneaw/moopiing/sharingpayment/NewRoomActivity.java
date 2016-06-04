@@ -49,13 +49,14 @@ public class NewRoomActivity extends Activity {
                 final String dessert = inputDessert.getText().toString();
 
                 if(!room.equals("") && !food.equals("") && !drink.equals("") && !dessert.equals("")
-                        && isStringDouble(food)==true  && isStringDouble(drink)==true && isStringDouble(dessert)==true){
+                        && isStringDouble(food)==true  && isStringDouble(drink)==true && isStringDouble(dessert)==true
+                        && !room.equals(dbRoom.searchName(room))){
                     Room rm = new Room();
 
                     rm.setName(room);
-                    rm.setFood(Integer.parseInt(food));
-                    rm.setDrink(Integer.parseInt(drink));
-                    rm.setDessert(Integer.parseInt(dessert));
+                    rm.setFood(Double.parseDouble(food));
+                    rm.setDrink(Double.parseDouble(drink));
+                    rm.setDessert(Double.parseDouble(dessert));
 
                     dbRoom.insertRoom(rm);
 
@@ -83,6 +84,9 @@ public class NewRoomActivity extends Activity {
                     invalid_room.show();
                 } else if(isStringDouble(dessert) == false){
                     Toast invalid_room = Toast.makeText(NewRoomActivity.this, "Dessert must be numeric!", Toast.LENGTH_SHORT);
+                    invalid_room.show();
+                } else if (room.equals(dbRoom.searchName(room))){
+                    Toast invalid_room = Toast.makeText(NewRoomActivity.this, "This room is already taken!", Toast.LENGTH_SHORT);
                     invalid_room.show();
                 }
             }

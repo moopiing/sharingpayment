@@ -1,7 +1,7 @@
 package com.kaoneaw.moopiing.sharingpayment;
 
 public class Account {
-    int balance;
+    double balance;
     String username,password;
 
     public void setUsername(String username){
@@ -16,10 +16,10 @@ public class Account {
     public String getPassword(){
         return this.password;
     }
-    public void setBalance(int balance){
+    public void setBalance(double balance){
         this.balance = balance;
     }
-    public int getBalance(){
+    public double getBalance(){
         return this.balance;
     }
 }

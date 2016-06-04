@@ -52,8 +52,10 @@ public class SignUpActivity extends Activity {
                     }else if (password.equals("")){
                         Toast empty_password = Toast.makeText(SignUpActivity.this, "Password don't empty!", Toast.LENGTH_SHORT);
                         empty_password.show();
-                    }
-                    else {
+                    } else if (username.equals(helper.searchUname(username))){
+                        Toast invalid_uname = Toast.makeText(SignUpActivity.this, "This username is already taken!", Toast.LENGTH_SHORT);
+                        invalid_uname.show();
+                    } else {
                         Account ac = new Account();
                         ac.setUsername(username);
                         ac.setPassword(password);

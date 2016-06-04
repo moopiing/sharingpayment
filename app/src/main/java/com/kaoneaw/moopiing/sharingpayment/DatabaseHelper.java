@@ -19,7 +19,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String TABLE_CREATE = "create table Account (id integer primary key not null, "
             + "username text not null, "
             + "password text not null, "
-            + "balance integer not null"
+            + "balance double not null"
             + ");";
 
     public DatabaseHelper(Context context){
@@ -114,7 +114,28 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return b;
     }
 
-    public int updateBalance(Account ac){
+    //using username to find id
+    public String searchUname(String username) {
+        db = this.getReadableDatabase();
+        String query = "select username, username from " + TABLE_NAME;
+        Cursor cursor = db.rawQuery(query, null);
+        String a, b;
+        b = "not found";
+        if (cursor.moveToFirst()) {
+            do {
+                a = cursor.getString(0);
+
+                if (a.equals(username)) {
+                    b = cursor.getString(1);
+                    break;
+                }
+            }
+            while (cursor.moveToNext());
+        }
+        return b;
+    }
+
+    public double updateBalance(Account ac){
         db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(COLUMN_USERNAME , ac.getUsername());

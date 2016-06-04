@@ -2,20 +2,20 @@ package com.kaoneaw.moopiing.sharingpayment;
 
 public class Room {
     String name;
-    int food,drink,dessert;
+    double food,drink,dessert;
 
     public void setName(String name){
         this.name = name;
     }
-    public void setFood(int food){
+    public void setFood(double food){
         this.food = food;
     }
 
-    public void setDrink(int drink) {
+    public void setDrink(double drink) {
         this.drink = drink;
     }
 
-    public void setDessert(int dessert) {
+    public void setDessert(double dessert) {
         this.dessert = dessert;
     }
 
@@ -23,15 +23,15 @@ public class Room {
         return this.name;
     }
 
-    public int getFood() {
+    public double getFood() {
         return this.food;
     }
 
-    public int getDrink() {
+    public double getDrink() {
         return this.drink;
     }
 
-    public int getDessert() {
+    public double getDessert() {
         return this.dessert;
     }
 }

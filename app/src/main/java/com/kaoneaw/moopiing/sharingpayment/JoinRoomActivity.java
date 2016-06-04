@@ -8,10 +8,13 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.w3c.dom.Text;
 
 public class JoinRoomActivity extends Activity {
+
+    DatabaseRoom dbRoom = new DatabaseRoom(this);
 
     private EditText inputRoom;
     private String username;
@@ -38,10 +41,15 @@ public class JoinRoomActivity extends Activity {
 
                 final String room = inputRoom.getText().toString();
 
-                Intent intent = new Intent(JoinRoomActivity.this, ChooseActivity.class);
-                intent.putExtra("Room", room);
-                intent.putExtra("Username", username);
-                startActivity(intent);
+                if(room.equals(dbRoom.searchName(room))){
+                    Intent intent = new Intent(JoinRoomActivity.this, ChooseActivity.class);
+                    intent.putExtra("Room", room);
+                    intent.putExtra("Username", username);
+                    startActivity(intent);
+                } else {
+                    Toast invalid_room = Toast.makeText(JoinRoomActivity.this, "This Room is inValid!", Toast.LENGTH_SHORT);
+                    invalid_room.show();
+                }
             }
         });
     }

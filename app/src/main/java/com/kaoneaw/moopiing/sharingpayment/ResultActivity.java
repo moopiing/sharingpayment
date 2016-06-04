@@ -76,7 +76,7 @@ public class ResultActivity extends Activity {
                 Account ac = new Account();
                 ac.setUsername(username);
                 ac.setPassword(helper.searchPass(username));
-                ac.setBalance((int) (Double.parseDouble(helper.searchPass1(username)) - Double.parseDouble(youpayText.getText().toString())));
+                ac.setBalance(Double.parseDouble(helper.searchPass1(username)) - Double.parseDouble(youpayText.getText().toString()));
 
                 helper.updateBalance(ac);
 
@@ -111,9 +111,9 @@ public class ResultActivity extends Activity {
 
 
     public void update(){
-        final double totalFood = Integer.parseInt(dbRoom.searchFood(room));
-        final double totalDrink = Integer.parseInt(dbRoom.searchDrink(room));
-        final double totalDessert = Integer.parseInt(dbRoom.searchDessert(room));
+        final double totalFood = Double.parseDouble(dbRoom.searchFood(room));
+        final double totalDrink = Double.parseDouble(dbRoom.searchDrink(room));
+        final double totalDessert = Double.parseDouble(dbRoom.searchDessert(room));
         final double totalTips = 0.1 * (totalFood + totalDrink + totalDessert);
 
         totalText.setText(REAL_FORMATTER.format(totalFood + totalDrink + totalDessert + totalTips));

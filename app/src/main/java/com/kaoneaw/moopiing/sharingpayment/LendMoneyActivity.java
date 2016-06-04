@@ -8,9 +8,13 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import java.text.DecimalFormat;
+
 public class LendMoneyActivity extends Activity {
 
     DatabaseHelper helper = new DatabaseHelper(this);
+
+    private static DecimalFormat REAL_FORMATTER = new DecimalFormat("0.##");
 
     private TextView balance;
     private EditText inputUsername;
@@ -47,7 +51,7 @@ public class LendMoneyActivity extends Activity {
                 Account ac1 = new Account();
                 ac1.setUsername(username);
                 ac1.setPassword(helper.searchPass(username));
-                ac1.setBalance(Integer.parseInt(helper.searchPass1(username)) + Integer.parseInt(amount));
+                ac1.setBalance(Double.parseDouble(helper.searchPass1(username)) + Double.parseDouble(amount));
 
                 helper.updateBalance(ac1);
 
@@ -56,7 +60,7 @@ public class LendMoneyActivity extends Activity {
                 Account ac2 = new Account();
                 ac2.setUsername(uname);
                 ac2.setPassword(helper.searchPass(uname));
-                ac2.setBalance(Integer.parseInt(helper.searchPass1(uname)) - Integer.parseInt(amount));
+                ac2.setBalance(Double.parseDouble(helper.searchPass1(uname)) - Double.parseDouble(amount));
 
                 helper.updateBalance(ac2);
 
