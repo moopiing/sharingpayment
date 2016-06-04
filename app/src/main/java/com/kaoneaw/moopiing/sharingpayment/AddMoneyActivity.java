@@ -1,6 +1,7 @@
 package com.kaoneaw.moopiing.sharingpayment;
 
 import android.app.Activity;
+import android.content.ContentValues;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -38,13 +39,18 @@ public class AddMoneyActivity extends Activity {
             @Override
             public void onClick(View v) {
 
+                final String temp = inputBalance.getText().toString();
 
+                Account ac = new Account();
+                ac.setUsername(username);
+                ac.setPassword(helper.searchPass(username));
+                ac.setBalance(Integer.parseInt(temp) + Integer.parseInt(helper.searchPass1(username)));
 
+                helper.updateBalance(ac);
 
-
-//                Intent intent = new Intent(AddMoneyActivity.this,MainActivity.class);
-//                startActivity(intent);
-
+                Intent intent = new Intent(AddMoneyActivity.this,MainActivity.class);
+                intent.putExtra("Username", username);
+                startActivity(intent);
             }
         });
     }

@@ -20,6 +20,7 @@ public class MainActivity extends Activity {
     private ImageButton logOutButton;
     private String username;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,6 +34,8 @@ public class MainActivity extends Activity {
         viewHistoryButtom = (ImageButton) findViewById(R.id.btn_menu_history);
         logOutButton = (ImageButton) findViewById(R.id.btn_menu_logout);
 
+
+
         initComponents();
     }
 
@@ -44,7 +47,8 @@ public class MainActivity extends Activity {
         newRoomButtom.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this,NewRoomActivity.class);
+                Intent intent = new Intent(MainActivity.this, NewRoomActivity.class);
+                intent.putExtra("Username", username);
                 startActivity(intent);
             }
         });
@@ -52,6 +56,7 @@ public class MainActivity extends Activity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this,JoinRoomActivity.class);
+                intent.putExtra("Username", username);
                 startActivity(intent);
             }
         });
@@ -67,6 +72,7 @@ public class MainActivity extends Activity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this,LendMoneyActivity.class);
+                intent.putExtra("Username", username);
                 startActivity(intent);
             }
         });
@@ -74,6 +80,7 @@ public class MainActivity extends Activity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this,HistoryActivity.class);
+                intent.putExtra("Username", username);
                 startActivity(intent);
             }
         });
@@ -84,8 +91,5 @@ public class MainActivity extends Activity {
                 startActivity(intent);
             }
         });
-
-
-
     }
 }

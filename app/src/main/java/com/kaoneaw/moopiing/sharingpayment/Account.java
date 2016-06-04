@@ -2,7 +2,6 @@ package com.kaoneaw.moopiing.sharingpayment;
 
 public class Account {
     int balance;
-//    String balance;
     String username,password;
 
     public void setUsername(String username){

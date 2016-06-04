@@ -9,13 +9,22 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.kaoneaw.moopiing.sharingpayment.NewRoomActivity"
     android:background="#87d9ff">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/img_logo"
+        android:src="@drawable/img_logo"
+        android:layout_gravity="center_horizontal"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
     <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/btn_new"
         android:layout_gravity="center_horizontal"
         android:src="@drawable/btn_new"
-        android:layout_marginBottom="55dp"
         android:background="#87d9ff"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true" />
@@ -27,32 +36,89 @@
         android:text="Room"
         android:id="@+id/tv_room"
         android:textSize="40dp"
-        android:layout_centerVertical="true"
+        android:textColor="#006fd7"
+        android:layout_below="@+id/img_logo"
         android:layout_alignRight="@+id/btn_new"
         android:layout_alignEnd="@+id/btn_new"
-        android:layout_marginRight="46dp"
-        android:layout_marginEnd="51dp"
-        android:textColor="#006fd7" />
+        android:layout_marginRight="57dp"
+        android:layout_marginEnd="57dp"
+        android:layout_marginTop="20dp" />
 
-    <ImageView
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/img_logo"
-        android:src="@drawable/img_logo"
-        android:layout_gravity="center_horizontal"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Total Cost Of Food"
+        android:id="@+id/tv_total_food"
+        android:textColor="#006fd7"
+        android:layout_below="@+id/tv_room"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="40dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Total Cost of Drink"
+        android:id="@+id/tv_total_drink"
+        android:layout_below="@+id/tv_total_food"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:textColor="#006fd7"
+        android:layout_marginTop="20dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Total Cost of Dessert"
+        android:id="@+id/tv_total_dessert"
+        android:layout_below="@+id/tv_total_drink"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:textColor="#006fd7"
+        android:layout_marginTop="20dp" />
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/ed_input_room"
+        android:id="@+id/et_input_room"
         android:background="@drawable/img_bg_number"
         android:textSize="40dp"
-        android:text="0000"
-        android:layout_centerVertical="true"
-        android:layout_alignLeft="@+id/btn_new"
-        android:layout_alignStart="@+id/btn_new"
-        android:layout_marginLeft="75dp" />
+        android:layout_alignTop="@+id/tv_room"
+        android:layout_toRightOf="@+id/tv_total_food"
+        android:layout_marginLeft="20dp" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/et_input_food"
+        android:layout_alignTop="@+id/tv_total_food"
+        android:layout_alignLeft="@+id/et_input_room"
+        android:layout_alignStart="@+id/et_input_room"
+        android:autoText="false"
+        android:background="@drawable/img_bg_number"
+        android:layout_marginLeft="40dp" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/et_input_drink"
+        android:autoText="false"
+        android:background="@drawable/img_bg_number"
+        android:layout_alignTop="@+id/tv_total_drink"
+        android:layout_alignLeft="@+id/et_input_food"
+        android:layout_alignStart="@+id/et_input_food" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/et_input_dessert"
+        android:autoText="false"
+        android:background="@drawable/img_bg_number"
+        android:layout_alignTop="@+id/tv_total_dessert"
+        android:layout_alignLeft="@+id/et_input_drink"
+        android:layout_alignStart="@+id/et_input_drink" />
 
 </RelativeLayout>

@@ -51,6 +51,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.close();
     }
 
+
+    //using username to find password
     public String searchPass(String username) {
         db = this.getReadableDatabase();
         String query = "select username, password from " + TABLE_NAME;
@@ -71,7 +73,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return b;
     }
 
-    //temp
+    //using username to find balance
     public String searchPass1(String username) {
         db = this.getReadableDatabase();
         String query = "select username, balance from " + TABLE_NAME;
@@ -92,6 +94,42 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return b;
     }
 
+    //using username to find id
+    public String searchPass2(String username) {
+        db = this.getReadableDatabase();
+        String query = "select username, id from " + TABLE_NAME;
+        Cursor cursor = db.rawQuery(query, null);
+        String a, b;
+        b = "not found";
+        if (cursor.moveToFirst()) {
+            do {
+                a = cursor.getString(0);
+
+                if (a.equals(username)) {
+                    b = cursor.getString(1);
+                    break;
+                }
+            }
+            while (cursor.moveToNext());
+        }
+        return b;
+    }
+
+    public int updateBalance(Account ac){
+        db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(COLUMN_USERNAME , ac.getUsername());
+        values.put(COLUMN_PASSWORD , ac.getPassword());
+        values.put(COLUMN_BALANCE, ac.getBalance());
+        // updating row
+//        return db.update(TABLE_NAME, values, COLUMN_USERNAME + " = ?",
+//                new String[]{String.valueOf(ac.getUsername())});
+
+        return db.update(TABLE_NAME, values, COLUMN_ID + " = ?",
+                new String[]{String.valueOf(searchPass2(ac.getUsername()))});
+    }
+
+
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
@@ -99,4 +137,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(query);
         this.onCreate(db);
     }
+
+
 }
