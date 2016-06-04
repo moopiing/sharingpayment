@@ -10,11 +10,5 @@
     android:background="#2787A4"
     >
 
-    <ListView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/display_listview"
-/>
-
 
 </RelativeLayout>

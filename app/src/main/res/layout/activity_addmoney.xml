@@ -38,7 +38,6 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:id="@+id/tv_string_balance"
-        android:text="0000"
         android:background="@drawable/img_bg_number"
         android:gravity="center"
         android:layout_toRightOf="@+id/tv_my_balance"

@@ -9,7 +9,11 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import java.text.DecimalFormat;
+
 public class AddMoneyActivity extends Activity {
+
+    private static DecimalFormat REAL_FORMATTER = new DecimalFormat("0.##");
 
     DatabaseHelper helper = new DatabaseHelper(this);
 
@@ -34,6 +38,7 @@ public class AddMoneyActivity extends Activity {
 
         username = super.getIntent().getExtras().getString("Username");
         balance.setText(helper.searchPass1(username));
+
 
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override

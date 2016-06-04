@@ -53,7 +53,7 @@ public class LoginActivity extends Activity {
 
                         startActivity(intent);
                     } else {
-                        Toast nomatch = Toast.makeText(LoginActivity.this, "Username and Password don't match!", Toast.LENGTH_SHORT);
+                        Toast nomatch = Toast.makeText(LoginActivity.this, "Username or Password is incorrect!", Toast.LENGTH_SHORT);
                         nomatch.show();
                     }
                 } else if (username.equals("")){

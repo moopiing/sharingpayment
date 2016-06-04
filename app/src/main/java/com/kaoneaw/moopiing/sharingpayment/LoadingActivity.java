@@ -21,11 +21,6 @@ public class LoadingActivity extends Activity {
                 } catch (Exception e) {
 
                 } finally {
-
-
-
-                    //temp
-//                    Intent i = new Intent(LoadingActivity.this, NewRoomActivity.class);
                     Intent i = new Intent(LoadingActivity.this, LoginActivity.class);
 
                     startActivity(i);
