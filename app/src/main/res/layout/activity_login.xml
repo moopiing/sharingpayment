@@ -58,7 +58,8 @@
         android:layout_alignParentStart="false"
         android:layout_below="@+id/tv_username"
         android:drawableLeft="@drawable/img_user"
-        android:textColor="#0084ff" />
+        android:textColor="#0084ff"
+        android:text="th" />
 
     <EditText
         android:layout_width="fill_parent"
@@ -70,7 +71,8 @@
         android:layout_alignParentEnd="false"
         android:layout_below="@+id/tv_password"
         android:drawableLeft="@drawable/img_lock"
-        android:textColor="#0084ff" />
+        android:textColor="#0084ff"
+        android:text="th" />
 
     <TextView
         android:layout_width="wrap_content"

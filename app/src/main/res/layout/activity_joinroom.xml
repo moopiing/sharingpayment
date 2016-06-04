@@ -48,7 +48,6 @@
         android:id="@+id/et_input_room"
         android:background="@drawable/img_bg_number"
         android:textSize="40dp"
-        android:text="0000"
         android:layout_centerVertical="true"
         android:layout_alignLeft="@+id/btn_join"
         android:layout_alignStart="@+id/btn_new"

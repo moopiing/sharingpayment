@@ -22,10 +22,11 @@ public class LoadingActivity extends Activity {
 
                 } finally {
 
-//                    Intent i = new Intent(LoadingActivity.this, LoginActivity.class);
+
 
                     //temp
-                    Intent i = new Intent(LoadingActivity.this, NewRoomActivity.class);
+//                    Intent i = new Intent(LoadingActivity.this, NewRoomActivity.class);
+                    Intent i = new Intent(LoadingActivity.this, LoginActivity.class);
 
                     startActivity(i);
                     finish();

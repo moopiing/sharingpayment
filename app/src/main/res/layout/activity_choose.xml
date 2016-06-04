@@ -82,7 +82,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="0000"
         android:id="@+id/tv_string_room"
         android:background="@drawable/img_bg_number"
         android:gravity="center"

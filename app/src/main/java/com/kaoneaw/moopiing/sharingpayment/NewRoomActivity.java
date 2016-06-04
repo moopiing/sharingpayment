@@ -3,17 +3,21 @@ package com.kaoneaw.moopiing.sharingpayment;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
 
 public class NewRoomActivity extends Activity {
 
+    DatabaseRoom dbRoom = new DatabaseRoom(this);
+
     private ImageButton newButton;
     private EditText inputRoom;
     private EditText inputFood;
     private EditText inputDrink;
     private EditText inputDessert;
+    private String username;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +35,9 @@ public class NewRoomActivity extends Activity {
     }
 
     private void initComponents(){
+
+        username = super.getIntent().getExtras().getString("Username");
+
         newButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -40,12 +47,18 @@ public class NewRoomActivity extends Activity {
                 final String drink = inputDrink.getText().toString();
                 final String dessert = inputDessert.getText().toString();
 
+                Room rm = new Room();
 
-                
+                rm.setName(room);
+                rm.setFood(Integer.parseInt(food));
+                rm.setDrink(Integer.parseInt(drink));
+                rm.setDessert(Integer.parseInt(dessert));
 
+                dbRoom.insertRoom(rm);
 
                 Intent intent = new Intent(NewRoomActivity.this,ChooseActivity.class);
                 intent.putExtra("Room", room);
+                intent.putExtra("Username",username);
                 startActivity(intent);
             }
         });

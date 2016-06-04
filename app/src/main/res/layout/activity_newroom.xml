@@ -88,7 +88,8 @@
         android:textSize="40dp"
         android:layout_alignTop="@+id/tv_room"
         android:layout_toRightOf="@+id/tv_total_food"
-        android:layout_marginLeft="20dp" />
+        android:layout_marginLeft="20dp"
+        android:text="th" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -99,7 +100,8 @@
         android:layout_alignStart="@+id/et_input_room"
         android:autoText="false"
         android:background="@drawable/img_bg_number"
-        android:layout_marginLeft="40dp" />
+        android:layout_marginLeft="40dp"
+        android:text="20" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -109,7 +111,8 @@
         android:background="@drawable/img_bg_number"
         android:layout_alignTop="@+id/tv_total_drink"
         android:layout_alignLeft="@+id/et_input_food"
-        android:layout_alignStart="@+id/et_input_food" />
+        android:layout_alignStart="@+id/et_input_food"
+        android:text="20" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -119,6 +122,7 @@
         android:background="@drawable/img_bg_number"
         android:layout_alignTop="@+id/tv_total_dessert"
         android:layout_alignLeft="@+id/et_input_drink"
-        android:layout_alignStart="@+id/et_input_drink" />
+        android:layout_alignStart="@+id/et_input_drink"
+        android:text="10" />
 
 </RelativeLayout>
