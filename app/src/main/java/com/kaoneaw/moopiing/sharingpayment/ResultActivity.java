@@ -4,16 +4,12 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.text.DecimalFormat;
-import java.util.Timer;
-import java.util.TimerTask;
 
 public class ResultActivity extends Activity {
 
@@ -24,6 +20,7 @@ public class ResultActivity extends Activity {
 
     private ImageButton payButton;
     private TextView roomText;
+    private TextView balanceText;
     private TextView totalText;
     private TextView youpayText;
     private String room;
@@ -49,6 +46,7 @@ public class ResultActivity extends Activity {
         }
 
         roomText = (TextView) findViewById(R.id.tv_string_room);
+        balanceText = (TextView) findViewById(R.id.tv_string_balance);
         totalText = (TextView) findViewById(R.id.tv_string_total);
         youpayText = (TextView) findViewById(R.id.tv_string_upay);
 
@@ -60,6 +58,7 @@ public class ResultActivity extends Activity {
     private void initComponents(){
 
         username = super.getIntent().getExtras().getString("Username");
+        balanceText.setText(helper.searchPass1(username));
 
         room = super.getIntent().getExtras().getString("Room");
         roomText.setText(room);

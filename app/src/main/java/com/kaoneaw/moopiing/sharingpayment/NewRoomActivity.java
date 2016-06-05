@@ -93,8 +93,7 @@ public class NewRoomActivity extends Activity {
         });
     }
 
-    public boolean isStringDouble(String s)
-    {
+    public boolean isStringDouble(String s) {
         try
         {
             Double.parseDouble(s);

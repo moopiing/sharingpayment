@@ -47,7 +47,7 @@ public class JoinRoomActivity extends Activity {
                     intent.putExtra("Username", username);
                     startActivity(intent);
                 } else {
-                    Toast invalid_room = Toast.makeText(JoinRoomActivity.this, "This Room is inValid!", Toast.LENGTH_SHORT);
+                    Toast invalid_room = Toast.makeText(JoinRoomActivity.this, "This room is invalid!", Toast.LENGTH_SHORT);
                     invalid_room.show();
                 }
             }

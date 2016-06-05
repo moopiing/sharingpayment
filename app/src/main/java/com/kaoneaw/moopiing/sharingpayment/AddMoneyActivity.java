@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.text.DecimalFormat;
 
@@ -43,20 +44,36 @@ public class AddMoneyActivity extends Activity {
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 final String temp = inputBalance.getText().toString();
 
-                Account ac = new Account();
-                ac.setUsername(username);
-                ac.setPassword(helper.searchPass(username));
-                ac.setBalance(Double.parseDouble(temp) + Double.parseDouble(helper.searchPass1(username)));
+                if (isStringDouble(temp)) {
 
-                helper.updateBalance(ac);
+                    Account ac = new Account();
+                    ac.setUsername(username);
+                    ac.setPassword(helper.searchPass(username));
+                    ac.setBalance(Double.parseDouble(temp) + Double.parseDouble(helper.searchPass1(username)));
 
-                Intent intent = new Intent(AddMoneyActivity.this,MainActivity.class);
-                intent.putExtra("Username", username);
-                startActivity(intent);
+                    helper.updateBalance(ac);
+
+                    Intent intent = new Intent(AddMoneyActivity.this, MainActivity.class);
+                    intent.putExtra("Username", username);
+                    startActivity(intent);
+                } else {
+                    Toast invalid_amount = Toast.makeText(AddMoneyActivity.this, "Balancea must be numeric!", Toast.LENGTH_SHORT);
+                    invalid_amount.show();
+                }
             }
         });
+    }
+
+    public boolean isStringDouble(String s) {
+        try
+        {
+            Double.parseDouble(s);
+            return true;
+        } catch (NumberFormatException ex)
+        {
+            return false;
+        }
     }
 }

@@ -25,14 +25,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="My Balance"
-        android:id="@+id/tv_my_balance"
+        android:id="@+id/tv_balance"
         android:layout_marginTop="75dp"
         android:textSize="30dp"
         android:textColor="#006fd7"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="false"
-        android:layout_marginLeft="35dp" />
+        android:layout_marginLeft="20dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -42,10 +42,10 @@
         android:background="@drawable/img_bg_number"
         android:gravity="center"
         android:textSize="30dp"
-        android:layout_alignTop="@+id/tv_my_balance"
-        android:layout_toRightOf="@+id/tv_my_balance"
-        android:layout_toEndOf="@+id/tv_my_balance"
-        android:layout_marginLeft="35dp" />
+        android:layout_alignTop="@+id/tv_balance"
+        android:layout_toRightOf="@+id/tv_balance"
+        android:layout_toEndOf="@+id/tv_balance"
+        android:layout_marginLeft="20dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -55,9 +55,9 @@
         android:id="@+id/tv_enter_username"
         android:layout_marginTop="53dp"
         android:textColor="#006fd7"
-        android:layout_below="@+id/tv_my_balance"
-        android:layout_alignLeft="@+id/tv_my_balance"
-        android:layout_alignStart="@+id/tv_my_balance" />
+        android:layout_below="@+id/tv_balance"
+        android:layout_alignLeft="@+id/tv_balance"
+        android:layout_alignStart="@+id/tv_balance" />
 
     <EditText
         android:layout_width="match_parent"

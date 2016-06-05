@@ -1,0 +1,68 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#ff6161"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <ScrollView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/img_logo"
+                    android:src="@drawable/img_logo"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignLeft="@+id/img_join_room"
+                    android:layout_gravity="center_horizontal" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/img_new_room"
+                    android:src="@drawable/img_info_new_room"
+                    android:layout_below="@+id/img_logo"
+                    android:layout_alignLeft="@+id/img_logo" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/img_join_room"
+                    android:src="@drawable/img_info_join_room"
+                    android:layout_below="@+id/img_new_room"
+                    android:layout_centerHorizontal="true" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/img_add_money"
+                    android:layout_below="@+id/img_join_room"
+                    android:layout_alignLeft="@+id/img_join_room"
+                    android:src="@drawable/img_info_add_money" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/img_lend_money"
+                    android:src="@drawable/img_info_lend_money"
+                    android:layout_above="@+id/img_new_room"
+                    android:layout_centerHorizontal="true" />
+
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+
+
+
+</LinearLayout>

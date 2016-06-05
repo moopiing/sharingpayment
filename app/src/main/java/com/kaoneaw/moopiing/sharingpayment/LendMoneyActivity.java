@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.text.DecimalFormat;
 
@@ -47,27 +48,46 @@ public class LendMoneyActivity extends Activity {
                 final String uname = inputUsername.getText().toString();
                 final String amount = inputBalance.getText().toString();
 
+                if (isStringDouble(amount)) {
+                    if (uname.equals(helper.searchUname(uname))) {
 
-                Account ac1 = new Account();
-                ac1.setUsername(username);
-                ac1.setPassword(helper.searchPass(username));
-                ac1.setBalance(Double.parseDouble(helper.searchPass1(username)) + Double.parseDouble(amount));
+                        Account ac1 = new Account();
+                        ac1.setUsername(username);
+                        ac1.setPassword(helper.searchPass(username));
+                        ac1.setBalance(Double.parseDouble(helper.searchPass1(username)) + Double.parseDouble(amount));
 
-                helper.updateBalance(ac1);
+                        helper.updateBalance(ac1);
 
 
+                        Account ac2 = new Account();
+                        ac2.setUsername(uname);
+                        ac2.setPassword(helper.searchPass(uname));
+                        ac2.setBalance(Double.parseDouble(helper.searchPass1(uname)) - Double.parseDouble(amount));
 
-                Account ac2 = new Account();
-                ac2.setUsername(uname);
-                ac2.setPassword(helper.searchPass(uname));
-                ac2.setBalance(Double.parseDouble(helper.searchPass1(uname)) - Double.parseDouble(amount));
+                        helper.updateBalance(ac2);
 
-                helper.updateBalance(ac2);
-
-                Intent intent = new Intent(LendMoneyActivity.this,MainActivity.class);
-                intent.putExtra("Username", username);
-                startActivity(intent);
+                        Intent intent = new Intent(LendMoneyActivity.this, MainActivity.class);
+                        intent.putExtra("Username", username);
+                        startActivity(intent);
+                    } else {
+                        Toast invalid_uname = Toast.makeText(LendMoneyActivity.this, "This username is invalid!", Toast.LENGTH_SHORT);
+                        invalid_uname.show();
+                    }
+                } else {
+                    Toast invalid_amount = Toast.makeText(LendMoneyActivity.this, "Amount must be numeric!", Toast.LENGTH_SHORT);
+                    invalid_amount.show();
+                }
             }
         });
+    }
+    public boolean isStringDouble(String s) {
+        try
+        {
+            Double.parseDouble(s);
+            return true;
+        } catch (NumberFormatException ex)
+        {
+            return false;
+        }
     }
 }

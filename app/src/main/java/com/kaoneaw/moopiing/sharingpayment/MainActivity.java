@@ -83,7 +83,7 @@ public class MainActivity extends Activity {
         viewHistoryButtom.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this,HistoryActivity.class);
+                Intent intent = new Intent(MainActivity.this,InfoActivity.class);
                 intent.putExtra("Username", username);
                 startActivity(intent);
             }
