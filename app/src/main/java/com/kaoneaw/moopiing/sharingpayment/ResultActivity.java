@@ -31,6 +31,9 @@ public class ResultActivity extends Activity {
     private int countDessert;
     private int countTIPs;
 
+    private double totalCost;
+    private double totalPay;
+
     private Handler mHandler;
 
     @Override
@@ -72,24 +75,30 @@ public class ResultActivity extends Activity {
 
             public void onClick(View v) {
 
-                Account ac = new Account();
-                ac.setUsername(username);
-                ac.setPassword(helper.searchPass(username));
-                ac.setBalance(Double.parseDouble(helper.searchPass1(username)) - Double.parseDouble(youpayText.getText().toString()));
+                if(Double.parseDouble(helper.searchPass1(username)) >= totalPay) {
 
-                helper.updateBalance(ac);
+                    Account ac = new Account();
+                    ac.setUsername(username);
+                    ac.setPassword(helper.searchPass(username));
+                    ac.setBalance(Double.parseDouble(helper.searchPass1(username)) - Double.parseDouble(youpayText.getText().toString()));
 
-                Room rm = new Room();
-                rm.setName(room);
-                rm.setFood(0);
-                rm.setDrink(0);
-                rm.setDessert(0);
+                    helper.updateBalance(ac);
 
-                dbRoom.updateCost(rm);
+                    Room rm = new Room();
+                    rm.setName(room);
+                    rm.setFood(0);
+                    rm.setDrink(0);
+                    rm.setDessert(0);
 
-                Intent intent = new Intent(ResultActivity.this, MainActivity.class);
-                intent.putExtra("Username", username);
-                startActivity(intent);
+                    dbRoom.updateCost(rm);
+
+                    Intent intent = new Intent(ResultActivity.this, MainActivity.class);
+                    intent.putExtra("Username", username);
+                    startActivity(intent);
+                } else {
+                    Toast no_money = Toast.makeText(ResultActivity.this, "Your balance is not enough!", Toast.LENGTH_SHORT);
+                    no_money.show();
+                }
             }
         });
 
@@ -115,22 +124,30 @@ public class ResultActivity extends Activity {
         final double totalDessert = Double.parseDouble(dbRoom.searchDessert(room));
         final double totalTips = 0.1 * (totalFood + totalDrink + totalDessert);
 
-        totalText.setText(REAL_FORMATTER.format(totalFood + totalDrink + totalDessert + totalTips));
+        totalCost = totalFood + totalDrink + totalDessert + totalTips;
+
+        totalText.setText(REAL_FORMATTER.format(totalCost));
 
         double totalPFood = totalFood/countFood;
         double totalPDrink = totalDrink/countDrink;
         double totalPDessert = totalDessert/countDessert;
         double totalPTips = totalTips/countTIPs;
 
-        if(totalPFood == Double.POSITIVE_INFINITY){
+        if(totalFood == 0 || countFood == 0){
             totalPFood = 0;
-        } else if (totalPDrink == Double.POSITIVE_INFINITY){
+        }
+        if (totalDrink == 0 || countDrink == 0){
             totalPDrink = 0;
-        } else if (totalPDessert == Double.POSITIVE_INFINITY){
+        }
+        if (totalDessert == 0 || countDessert == 0){
             totalPDessert = 0;
-        } else if (totalPTips == Double.POSITIVE_INFINITY){
+        }
+        if (totalTips == 0 || countTIPs == 0){
             totalPTips = 0;
         }
-        youpayText.setText(REAL_FORMATTER.format(totalPFood + totalPDrink + totalPDessert + totalPTips));
+
+        totalPay = totalPFood + totalPDrink + totalPDessert + totalPTips;
+
+        youpayText.setText(REAL_FORMATTER.format(totalPay));
     }
 }
