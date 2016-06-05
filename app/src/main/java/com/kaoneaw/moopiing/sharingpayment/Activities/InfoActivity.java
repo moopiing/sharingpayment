@@ -1,8 +1,10 @@
-package com.kaoneaw.moopiing.sharingpayment;
+package com.kaoneaw.moopiing.sharingpayment.Activities;
 
 import android.app.Activity;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
+
+import com.kaoneaw.moopiing.sharingpayment.R;
 
 public class InfoActivity extends Activity {
 
@@ -18,6 +20,5 @@ public class InfoActivity extends Activity {
         int height = dm.heightPixels;
 
         getWindow().setLayout((int) (width * .85), (int) (height * .7));
-
     }
 }

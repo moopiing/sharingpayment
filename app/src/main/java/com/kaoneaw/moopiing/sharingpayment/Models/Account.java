@@ -1,4 +1,4 @@
-package com.kaoneaw.moopiing.sharingpayment;
+package com.kaoneaw.moopiing.sharingpayment.Models;
 
 public class Account {
     double balance;
@@ -7,19 +7,19 @@ public class Account {
     public void setUsername(String username){
         this.username = username;
     }
-    public String getUsername(){
-        return this.username;
-    }
     public void setPassword(String password){
         this.password = password;
-    }
-    public String getPassword(){
-        return this.password;
     }
     public void setBalance(double balance){
         this.balance = balance;
     }
+    public String getUsername(){
+        return username;
+    }
+    public String getPassword(){
+        return password;
+    }
     public double getBalance(){
-        return this.balance;
+        return balance;
     }
 }

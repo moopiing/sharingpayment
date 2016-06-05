@@ -7,7 +7,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.kaoneaw.moopiing.sharingpayment.AddMoneyActivity"
+    tools:context=".Activities.AddMoneyActivity"
     android:background="#87d9ff">
 
     <ImageButton

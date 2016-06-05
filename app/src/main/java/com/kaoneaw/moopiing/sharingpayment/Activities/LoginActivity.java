@@ -1,18 +1,20 @@
-package com.kaoneaw.moopiing.sharingpayment;
+package com.kaoneaw.moopiing.sharingpayment.Activities;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.TextView;
 import android.widget.Toast;
+
+import com.kaoneaw.moopiing.sharingpayment.Models.Account;
+import com.kaoneaw.moopiing.sharingpayment.Databases.DatabaseAccount;
+import com.kaoneaw.moopiing.sharingpayment.R;
 
 public class LoginActivity extends Activity {
 
-    DatabaseHelper helper = new DatabaseHelper(this);
+    DatabaseAccount dbAccount = new DatabaseAccount(this);
 
     private ImageButton loginButton;
     private ImageButton signUpButton;
@@ -20,7 +22,6 @@ public class LoginActivity extends Activity {
     private EditText input_username;
     private EditText input_password;
 
-    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
@@ -32,19 +33,17 @@ public class LoginActivity extends Activity {
         input_username = (EditText) findViewById(R.id.et_input_username);
         input_password = (EditText) findViewById(R.id.et_input_password);
 
-
         initComponents();
     }
 
     private void initComponents(){
         loginButton.setOnClickListener(new View.OnClickListener() {
-            @Override
+
             public void onClick(View v) {
 
                 final String username = input_username.getText().toString();
                 final String password = input_password.getText().toString();
-
-                final String searchPass = helper.searchPass(username);
+                final String searchPass = dbAccount.searchPass(username);
 
                 if(!username.equals("") && !password.equals("")) {
                     if (password.equals(searchPass)) {
@@ -66,17 +65,22 @@ public class LoginActivity extends Activity {
             }
         });
         signUpButton.setOnClickListener(new View.OnClickListener() {
-            @Override
             public void onClick(View v) {
                 Intent intent = new Intent(LoginActivity.this, SignUpActivity.class);
                 startActivity(intent);
             }
         });
         guestButton.setOnClickListener(new View.OnClickListener() {
-            @Override
             public void onClick(View v) {
+                Account guest = new Account();
+                guest.setUsername("guest");
+                guest.setPassword("guest");
+                guest.setBalance(0);
+
+                dbAccount.insertContact(guest);
+
                 Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                intent.putExtra("Username", "GUEST");
+                intent.putExtra("Username", "guest");
                 startActivity(intent);
             }
         });

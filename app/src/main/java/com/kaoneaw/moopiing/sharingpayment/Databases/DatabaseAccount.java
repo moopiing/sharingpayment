@@ -1,4 +1,4 @@
-package com.kaoneaw.moopiing.sharingpayment;
+package com.kaoneaw.moopiing.sharingpayment.Databases;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -6,7 +6,9 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-public class DatabaseHelper extends SQLiteOpenHelper {
+import com.kaoneaw.moopiing.sharingpayment.Models.Account;
+
+public class DatabaseAccount extends SQLiteOpenHelper {
 
     private static final int DATABASE_VERSION = 1;
     private static final String DATABASE_NAME = "Account.db";
@@ -22,12 +24,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             + "balance double not null"
             + ");";
 
-    public DatabaseHelper(Context context){
+    public DatabaseAccount(Context context){
         super(context,DATABASE_NAME,null,DATABASE_VERSION);
     }
 
-
-    @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(TABLE_CREATE);
         this.db = db;
@@ -50,8 +50,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.close();
     }
 
-
-    //using username to find password
     public String searchPass(String username) {
         db = this.getReadableDatabase();
         String query = "select username, password from " + TABLE_NAME;
@@ -72,8 +70,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return b;
     }
 
-    //using username to find balance
-    public String searchPass1(String username) {
+    public String searchBalance(String username) {
         db = this.getReadableDatabase();
         String query = "select username, balance from " + TABLE_NAME;
         Cursor cursor = db.rawQuery(query, null);
@@ -93,8 +90,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return b;
     }
 
-    //using username to find id
-    public String searchPass2(String username) {
+    public String searchID(String username) {
         db = this.getReadableDatabase();
         String query = "select username, id from " + TABLE_NAME;
         Cursor cursor = db.rawQuery(query, null);
@@ -114,7 +110,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return b;
     }
 
-    //using username to find id
     public String searchUname(String username) {
         db = this.getReadableDatabase();
         String query = "select username, username from " + TABLE_NAME;
@@ -141,22 +136,20 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(COLUMN_USERNAME , ac.getUsername());
         values.put(COLUMN_PASSWORD , ac.getPassword());
         values.put(COLUMN_BALANCE, ac.getBalance());
-        // updating row
-//        return db.update(TABLE_NAME, values, COLUMN_USERNAME + " = ?",
-//                new String[]{String.valueOf(ac.getUsername())});
 
         return db.update(TABLE_NAME, values, COLUMN_ID + " = ?",
-                new String[]{String.valueOf(searchPass2(ac.getUsername()))});
+                new String[]{String.valueOf(searchID(ac.getUsername()))});
     }
 
-
-
-    @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         String query = "DROP TABLE IF EXISTS " + TABLE_NAME;
         db.execSQL(query);
         this.onCreate(db);
     }
-
-
+    public void delete(String uname) {
+        db = this.getWritableDatabase();
+        db.delete(TABLE_NAME, COLUMN_ID + " = ?",
+                new String[]{String.valueOf(searchID(uname))});
+        db.close();
+    }
 }

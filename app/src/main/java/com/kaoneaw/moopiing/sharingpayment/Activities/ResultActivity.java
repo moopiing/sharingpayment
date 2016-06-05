@@ -1,4 +1,4 @@
-package com.kaoneaw.moopiing.sharingpayment;
+package com.kaoneaw.moopiing.sharingpayment.Activities;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -9,12 +9,17 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.kaoneaw.moopiing.sharingpayment.Models.Account;
+import com.kaoneaw.moopiing.sharingpayment.Databases.DatabaseAccount;
+import com.kaoneaw.moopiing.sharingpayment.Databases.DatabaseRoom;
+import com.kaoneaw.moopiing.sharingpayment.R;
+
 import java.text.DecimalFormat;
 
 public class ResultActivity extends Activity {
 
     DatabaseRoom dbRoom = new DatabaseRoom(this);
-    DatabaseHelper helper = new DatabaseHelper(this);
+    DatabaseAccount dbAccount = new DatabaseAccount(this);
 
     private static DecimalFormat REAL_FORMATTER = new DecimalFormat("0.##");
 
@@ -31,66 +36,66 @@ public class ResultActivity extends Activity {
     private int countDessert;
     private int countTIPs;
 
+    private int countFood_Join;
+    private int countDrink_Join;
+    private int countDessert_Join;
+    private int countTips_Join;
+
     private double totalCost;
     private double totalPay;
 
     private Handler mHandler;
 
-    @Override
+    private int num_join = 1;
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_result);
 
         mHandler = new Handler();
-
-        int temp = (int)(Math.random()*5+1);
-        for(int i=0;i<temp;i++) {
-            mHandler.postDelayed(textUpdate, 2500 * i);
+        for(int i=0 ; i<(int)(Math.random()*5+1); i++) {
+            if(i==0){
+                mHandler.postDelayed(textUpdate, 2000);
+            } else {
+                mHandler.postDelayed(textUpdate, 3000 * i);
+            }
         }
 
         roomText = (TextView) findViewById(R.id.tv_string_room);
         balanceText = (TextView) findViewById(R.id.tv_string_balance);
         totalText = (TextView) findViewById(R.id.tv_string_total);
         youpayText = (TextView) findViewById(R.id.tv_string_upay);
-
         payButton = (ImageButton) findViewById(R.id.btn_pay);
 
-        initComponents();
-    }
-
-    private void initComponents(){
-
         username = super.getIntent().getExtras().getString("Username");
-        balanceText.setText(helper.searchPass1(username));
-
         room = super.getIntent().getExtras().getString("Room");
-        roomText.setText(room);
-
         countFood = super.getIntent().getExtras().getInt("CountFood");
         countDrink = super.getIntent().getExtras().getInt("CountDrink");
         countDessert = super.getIntent().getExtras().getInt("CountDessert");
         countTIPs = super.getIntent().getExtras().getInt("CountTIPs");
 
+        initComponents();
+    }
+
+    private void initComponents(){
+        balanceText.setText(dbAccount.searchBalance(username));
+        roomText.setText(room);
+
         payButton.setOnClickListener(new View.OnClickListener() {
-
             public void onClick(View v) {
+                if(Double.parseDouble(dbAccount.searchBalance(username)) >= totalPay) {
 
-                if(Double.parseDouble(helper.searchPass1(username)) >= totalPay) {
+                    mHandler.removeCallbacksAndMessages(null);
 
                     Account ac = new Account();
                     ac.setUsername(username);
-                    ac.setPassword(helper.searchPass(username));
-                    ac.setBalance(Double.parseDouble(helper.searchPass1(username)) - Double.parseDouble(youpayText.getText().toString()));
+                    ac.setPassword(dbAccount.searchPass(username));
+                    ac.setBalance(Double.parseDouble(dbAccount.searchBalance(username)) - Double.parseDouble(youpayText.getText().toString()));
 
-                    helper.updateBalance(ac);
+                    dbAccount.updateBalance(ac);
 
-                    Room rm = new Room();
-                    rm.setName(room);
-                    rm.setFood(0);
-                    rm.setDrink(0);
-                    rm.setDessert(0);
 
-                    dbRoom.updateCost(rm);
+                    dbRoom.delete(room);
 
                     Intent intent = new Intent(ResultActivity.this, MainActivity.class);
                     intent.putExtra("Username", username);
@@ -101,37 +106,36 @@ public class ResultActivity extends Activity {
                 }
             }
         });
-
         update();
     }
 
     private Runnable textUpdate = new Runnable() {
         public void run() {
-            countFood += (int)(Math.random()*2+0);
-            countDrink += (int)(Math.random()*2+0);
-            countDessert += (int)(Math.random()*2+0);
-            countTIPs += (int)(Math.random()*2+0);
+            countFood_Join += (int)(Math.random()*2+0);
+            countDrink_Join += (int)(Math.random()*2+0);
+            countDessert_Join += (int)(Math.random()*2+0);
+            countTips_Join += (int)(Math.random()*2+0);
             update();
-            Toast user_join = Toast.makeText(ResultActivity.this, "Anonymous User Joined!", Toast.LENGTH_SHORT);
+            Toast user_join = Toast.makeText(ResultActivity.this, num_join + " Anonymous User Joined!", Toast.LENGTH_SHORT);
+            num_join++;
             user_join.show();
         }
     };
 
 
     public void update(){
-        final double totalFood = Double.parseDouble(dbRoom.searchFood(room));
-        final double totalDrink = Double.parseDouble(dbRoom.searchDrink(room));
-        final double totalDessert = Double.parseDouble(dbRoom.searchDessert(room));
-        final double totalTips = 0.1 * (totalFood + totalDrink + totalDessert);
+        double totalFood = Double.parseDouble(dbRoom.searchFood(room));
+        double totalDrink = Double.parseDouble(dbRoom.searchDrink(room));
+        double totalDessert = Double.parseDouble(dbRoom.searchDessert(room));
+        double totalTips = 0.1 * (totalFood + totalDrink + totalDessert);
 
         totalCost = totalFood + totalDrink + totalDessert + totalTips;
-
         totalText.setText(REAL_FORMATTER.format(totalCost));
 
-        double totalPFood = totalFood/countFood;
-        double totalPDrink = totalDrink/countDrink;
-        double totalPDessert = totalDessert/countDessert;
-        double totalPTips = totalTips/countTIPs;
+        double totalPFood = totalFood/(countFood + countFood_Join);
+        double totalPDrink = totalDrink/(countDrink + countDrink_Join);
+        double totalPDessert = totalDessert/(countDessert + countDessert_Join);
+        double totalPTips = totalTips/(countTIPs + countTips_Join);
 
         if(totalFood == 0 || countFood == 0){
             totalPFood = 0;
@@ -147,7 +151,6 @@ public class ResultActivity extends Activity {
         }
 
         totalPay = totalPFood + totalPDrink + totalPDessert + totalPTips;
-
         youpayText.setText(REAL_FORMATTER.format(totalPay));
     }
 }

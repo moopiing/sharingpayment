@@ -1,23 +1,23 @@
-package com.kaoneaw.moopiing.sharingpayment;
+package com.kaoneaw.moopiing.sharingpayment.Activities;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 
+import com.kaoneaw.moopiing.sharingpayment.R;
+
 public class LoadingActivity extends Activity {
 
-    @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activty_loading);
 
         Thread welcomeThread = new Thread() {
 
-            @Override
             public void run() {
                 try {
                     super.run();
-                    sleep(0000);  //Delay of 4 seconds
+                    sleep(4000);
                 } catch (Exception e) {
 
                 } finally {

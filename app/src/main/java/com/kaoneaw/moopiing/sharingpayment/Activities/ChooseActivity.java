@@ -1,4 +1,4 @@
-package com.kaoneaw.moopiing.sharingpayment;
+package com.kaoneaw.moopiing.sharingpayment.Activities;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -7,11 +7,9 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
+import com.kaoneaw.moopiing.sharingpayment.R;
 
 public class ChooseActivity extends Activity {
-
-    DatabaseRoom dbRoom = new DatabaseRoom(this);
 
     private ImageButton foodButtom;
     private ImageButton drinkButtom;
@@ -28,59 +26,68 @@ public class ChooseActivity extends Activity {
     private int countDessert = 0;
     private int countTIPs = 0;
 
-    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_choose);
+        username = super.getIntent().getExtras().getString("Username");
+        room = super.getIntent().getExtras().getString("Room");
 
         foodButtom = (ImageButton) findViewById(R.id.btn_food);
         drinkButtom = (ImageButton) findViewById(R.id.btn_drink);
         dessertButtom = (ImageButton) findViewById(R.id.btn_dessert);
         tipButtom = (ImageButton) findViewById(R.id.btn_tip);
         goButtom = (ImageButton) findViewById(R.id.btn_go);
-
         roomText = (TextView) findViewById(R.id.tv_string_room);
 
         initComponents();
     }
 
     private void initComponents(){
-
-        username = super.getIntent().getExtras().getString("Username");
-
-        room = super.getIntent().getExtras().getString("Room");
         roomText.setText(room);
 
         foodButtom.setOnClickListener(new View.OnClickListener() {
-            @Override
+            boolean isPress = true;
+
             public void onClick(View v) {
-                foodButtom.setImageResource(R.drawable.img_choose);
-                countFood = countFood + 1;
+                if (isPress) {
+                    foodButtom.setImageResource(R.drawable.img_choose);
+                    countFood = countFood + 1;
+                }
+                isPress = false;
             }
         });
         drinkButtom.setOnClickListener(new View.OnClickListener() {
-            @Override
+            boolean isPress = true;
+
             public void onClick(View v) {
-                drinkButtom.setImageResource(R.drawable.img_choose);
-                countDrink = countDrink + 1;
+                if (isPress) {
+                    drinkButtom.setImageResource(R.drawable.img_choose);
+                    countDrink = countDrink + 1;
+                }
+                isPress = false;
             }
         });
         dessertButtom.setOnClickListener(new View.OnClickListener() {
-            @Override
+            boolean isPress = true;
             public void onClick(View v) {
-                dessertButtom.setImageResource(R.drawable.img_choose);
-                countDessert = countDessert + 1;
+                if(isPress) {
+                    dessertButtom.setImageResource(R.drawable.img_choose);
+                    countDessert = countDessert + 1;
+                }
+                isPress = false;
             }
         });
         tipButtom.setOnClickListener(new View.OnClickListener() {
-            @Override
+            boolean isPress = true;
             public void onClick(View v) {
-                tipButtom.setImageResource(R.drawable.img_choose);
-                countTIPs = countTIPs + 1;
+                if(isPress) {
+                    tipButtom.setImageResource(R.drawable.img_choose);
+                    countTIPs = countTIPs + 1;
+                }
+                isPress = false;
             }
         });
         goButtom.setOnClickListener(new View.OnClickListener() {
-            @Override
             public void onClick(View v) {
                 Intent intent = new Intent(ChooseActivity.this,ResultActivity.class);
                 intent.putExtra("Room", room);

@@ -1,7 +1,6 @@
-package com.kaoneaw.moopiing.sharingpayment;
+package com.kaoneaw.moopiing.sharingpayment.Activities;
 
 import android.app.Activity;
-import android.content.ContentValues;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -10,23 +9,23 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.text.DecimalFormat;
+import com.kaoneaw.moopiing.sharingpayment.Models.Account;
+import com.kaoneaw.moopiing.sharingpayment.Databases.DatabaseAccount;
+import com.kaoneaw.moopiing.sharingpayment.R;
 
 public class AddMoneyActivity extends Activity {
 
-    private static DecimalFormat REAL_FORMATTER = new DecimalFormat("0.##");
-
-    DatabaseHelper helper = new DatabaseHelper(this);
+    DatabaseAccount dbAccount = new DatabaseAccount(this);
 
     private String username;
     private TextView balance;
     private ImageButton addButton;
     private EditText inputBalance;
 
-    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_addmoney);
+        username = super.getIntent().getExtras().getString("Username");
 
         balance = (TextView) findViewById(R.id.tv_string_balance);
         inputBalance = (EditText) findViewById(R.id.et_input_amount);
@@ -36,30 +35,26 @@ public class AddMoneyActivity extends Activity {
     }
 
     private void initComponents(){
-
-        username = super.getIntent().getExtras().getString("Username");
-        balance.setText(helper.searchPass1(username));
-
+        balance.setText(dbAccount.searchBalance(username));
 
         addButton.setOnClickListener(new View.OnClickListener() {
-            @Override
+
             public void onClick(View v) {
-                final String temp = inputBalance.getText().toString();
+                final String balanceStr = inputBalance.getText().toString();
 
-                if (isStringDouble(temp)) {
-
+                if (isStringDouble(balanceStr)) {
                     Account ac = new Account();
                     ac.setUsername(username);
-                    ac.setPassword(helper.searchPass(username));
-                    ac.setBalance(Double.parseDouble(temp) + Double.parseDouble(helper.searchPass1(username)));
+                    ac.setPassword(dbAccount.searchPass(username));
+                    ac.setBalance(Double.parseDouble(dbAccount.searchBalance(username)) + Double.parseDouble(balanceStr));
 
-                    helper.updateBalance(ac);
+                    dbAccount.updateBalance(ac);
 
                     Intent intent = new Intent(AddMoneyActivity.this, MainActivity.class);
                     intent.putExtra("Username", username);
                     startActivity(intent);
                 } else {
-                    Toast invalid_amount = Toast.makeText(AddMoneyActivity.this, "Balancea must be numeric!", Toast.LENGTH_SHORT);
+                    Toast invalid_amount = Toast.makeText(AddMoneyActivity.this, "Balance must be numeric!", Toast.LENGTH_SHORT);
                     invalid_amount.show();
                 }
             }
@@ -67,12 +62,10 @@ public class AddMoneyActivity extends Activity {
     }
 
     public boolean isStringDouble(String s) {
-        try
-        {
+        try {
             Double.parseDouble(s);
             return true;
-        } catch (NumberFormatException ex)
-        {
+        } catch (NumberFormatException ex) {
             return false;
         }
     }

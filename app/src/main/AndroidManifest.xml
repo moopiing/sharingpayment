@@ -8,24 +8,24 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".LoadingActivity">
+        <activity android:name=".Activities.LoadingActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".AddMoneyActivity"></activity>
-        <activity android:name=".ChooseActivity"></activity>
-        <activity android:name=".InfoActivity"
+        <activity android:name=".Activities.AddMoneyActivity"></activity>
+        <activity android:name=".Activities.ChooseActivity"></activity>
+        <activity android:name=".Activities.InfoActivity"
             android:theme="@style/AppTheme.CustomTheme"></activity>
-        <activity android:name=".JoinRoomActivity"></activity>
-        <activity android:name=".LendMoneyActivity"></activity>
-        <activity android:name=".LoginActivity"></activity>
-        <activity android:name=".MainActivity"></activity>
-        <activity android:name=".NewRoomActivity"></activity>
-        <activity android:name=".ResultActivity"></activity>
-        <activity android:name=".SignUpActivity"></activity>
+        <activity android:name=".Activities.JoinRoomActivity"></activity>
+        <activity android:name=".Activities.LendMoneyActivity"></activity>
+        <activity android:name=".Activities.LoginActivity"></activity>
+        <activity android:name=".Activities.MainActivity"></activity>
+        <activity android:name=".Activities.NewRoomActivity"></activity>
+        <activity android:name=".Activities.ResultActivity"></activity>
+        <activity android:name=".Activities.SignUpActivity"></activity>
 
     </application>
 

@@ -1,19 +1,20 @@
-package com.kaoneaw.moopiing.sharingpayment;
+package com.kaoneaw.moopiing.sharingpayment.Activities;
 
-        import android.app.Activity;
-        import android.content.Intent;
-        import android.os.Bundle;
-        import android.view.View;
-        import android.widget.ImageButton;
-        import android.widget.TextView;
+import android.app.Activity;
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageButton;
+import android.widget.TextView;
 
-        import java.text.DecimalFormat;
+import com.kaoneaw.moopiing.sharingpayment.Databases.DatabaseAccount;
+import com.kaoneaw.moopiing.sharingpayment.Databases.DatabaseRoom;
+import com.kaoneaw.moopiing.sharingpayment.R;
 
 public class MainActivity extends Activity {
 
-    private static DecimalFormat REAL_FORMATTER = new DecimalFormat("0.##");
-
-    DatabaseHelper helper = new DatabaseHelper(this);
+    DatabaseAccount dbAccount = new DatabaseAccount(this);
+    DatabaseRoom dbRoom = new DatabaseRoom(this);
 
     private TextView balance;
     private ImageButton newRoomButtom;
@@ -22,13 +23,13 @@ public class MainActivity extends Activity {
     private ImageButton lendMoneyButtom;
     private ImageButton viewHistoryButtom;
     private ImageButton logOutButton;
+
     private String username;
 
-
-    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        username = super.getIntent().getExtras().getString("Username");
 
         balance = (TextView) findViewById(R.id.tv_string_balance);
         newRoomButtom = (ImageButton) findViewById(R.id.btn_menu_new_room);
@@ -38,18 +39,13 @@ public class MainActivity extends Activity {
         viewHistoryButtom = (ImageButton) findViewById(R.id.btn_menu_history);
         logOutButton = (ImageButton) findViewById(R.id.btn_menu_logout);
 
-
-
         initComponents();
     }
 
     private void initComponents(){
-
-        username = super.getIntent().getExtras().getString("Username");
-        balance.setText(helper.searchPass1(username));
+        balance.setText(dbAccount.searchBalance(username));
 
         newRoomButtom.setOnClickListener(new View.OnClickListener() {
-            @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, NewRoomActivity.class);
                 intent.putExtra("Username", username);
@@ -57,7 +53,6 @@ public class MainActivity extends Activity {
             }
         });
         joinRoomButtom.setOnClickListener(new View.OnClickListener() {
-            @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this,JoinRoomActivity.class);
                 intent.putExtra("Username", username);
@@ -65,7 +60,6 @@ public class MainActivity extends Activity {
             }
         });
         addMoneyButtom.setOnClickListener(new View.OnClickListener() {
-            @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this,AddMoneyActivity.class);
                 intent.putExtra("Username", username);
@@ -73,7 +67,6 @@ public class MainActivity extends Activity {
             }
         });
         lendMoneyButtom.setOnClickListener(new View.OnClickListener() {
-            @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this,LendMoneyActivity.class);
                 intent.putExtra("Username", username);
@@ -81,7 +74,6 @@ public class MainActivity extends Activity {
             }
         });
         viewHistoryButtom.setOnClickListener(new View.OnClickListener() {
-            @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this,InfoActivity.class);
                 intent.putExtra("Username", username);
@@ -89,8 +81,10 @@ public class MainActivity extends Activity {
             }
         });
         logOutButton.setOnClickListener(new View.OnClickListener() {
-            @Override
             public void onClick(View v) {
+                if(username.equals("guest")){
+                    dbAccount.delete("guest");
+                }
                 Intent intent = new Intent(MainActivity.this,LoginActivity.class);
                 startActivity(intent);
             }

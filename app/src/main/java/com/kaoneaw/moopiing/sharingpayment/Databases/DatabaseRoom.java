@@ -1,10 +1,12 @@
-package com.kaoneaw.moopiing.sharingpayment;
+package com.kaoneaw.moopiing.sharingpayment.Databases;
 
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+
+import com.kaoneaw.moopiing.sharingpayment.Models.Room;
 
 public class DatabaseRoom extends SQLiteOpenHelper {
 
@@ -28,8 +30,6 @@ public class DatabaseRoom extends SQLiteOpenHelper {
         super(context,DATABASE_NAME,null,DATABASE_VERSION);
     }
 
-
-    @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(TABLE_CREATE);
         this.db = db;
@@ -53,7 +53,6 @@ public class DatabaseRoom extends SQLiteOpenHelper {
         db.close();
     }
 
-    //using name to find food
     public String searchFood(String username) {
         db = this.getReadableDatabase();
         String query = "select name, food from " + TABLE_NAME;
@@ -74,7 +73,6 @@ public class DatabaseRoom extends SQLiteOpenHelper {
         return b;
     }
 
-    //using name to find drink
     public String searchDrink(String name) {
         db = this.getReadableDatabase();
         String query = "select name, drink from " + TABLE_NAME;
@@ -95,7 +93,6 @@ public class DatabaseRoom extends SQLiteOpenHelper {
         return b;
     }
 
-    //using name to find dessert
     public String searchDessert(String name) {
         db = this.getReadableDatabase();
         String query = "select name, dessert from " + TABLE_NAME;
@@ -116,7 +113,6 @@ public class DatabaseRoom extends SQLiteOpenHelper {
         return b;
     }
 
-    //using name to find id
     public String searchID(String name) {
         db = this.getReadableDatabase();
         String query = "select name, id from " + TABLE_NAME;
@@ -137,7 +133,6 @@ public class DatabaseRoom extends SQLiteOpenHelper {
         return b;
     }
 
-    //using name to find name
     public String searchName(String name) {
         db = this.getReadableDatabase();
         String query = "select name, name from " + TABLE_NAME;
@@ -158,28 +153,16 @@ public class DatabaseRoom extends SQLiteOpenHelper {
         return b;
     }
 
-
-    public double updateCost(Room rm){
-        db = this.getWritableDatabase();
-        ContentValues values = new ContentValues();
-        values.put(COLUMN_NAME, rm.getName());
-        values.put(COLUMN_FOOD , rm.getFood());
-        values.put(COLUMN_DRINK, rm.getDrink());
-        values.put(COLUMN_DESSERT, rm.getDessert());
-        // updating row
-//        return db.update(TABLE_NAME, values, COLUMN_USERNAME + " = ?",
-//                new String[]{String.valueOf(ac.getUsername())});
-
-        return db.update(TABLE_NAME, values, COLUMN_ID + " = ?",
-                new String[]{String.valueOf(searchID(rm.getName()))});
-    }
-
-    @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         String query = "DROP TABLE IF EXISTS " + TABLE_NAME;
         db.execSQL(query);
         this.onCreate(db);
     }
 
-
+    public void delete(String name) {
+        db = this.getWritableDatabase();
+        db.delete(TABLE_NAME, COLUMN_ID + " = ?",
+                new String[]{String.valueOf(searchID(name))});
+        db.close();
+    }
 }

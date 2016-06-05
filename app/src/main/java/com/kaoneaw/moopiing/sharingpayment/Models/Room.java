@@ -1,4 +1,4 @@
-package com.kaoneaw.moopiing.sharingpayment;
+package com.kaoneaw.moopiing.sharingpayment.Models;
 
 public class Room {
     String name;
@@ -20,18 +20,18 @@ public class Room {
     }
 
     public String getName() {
-        return this.name;
+        return name;
     }
 
     public double getFood() {
-        return this.food;
+        return food;
     }
 
     public double getDrink() {
-        return this.drink;
+        return drink;
     }
 
     public double getDessert() {
-        return this.dessert;
+        return dessert;
     }
 }
